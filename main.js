@@ -195,17 +195,22 @@ print(separator);
 	and access each member with array syntax arr[i].
 	*/
 	function largestOfFour(arr) {
-		return null;
+		var list = [] ;
+		for (var i = 0; i < arr.length; i++) {
+			list.push(Math.max.apply(null, arr[i])) ;
+		}
+
+		return list ;
 	}
 	print('largestOfFour');
-	test(largestOfFour([1, 2, 3, 4], [10, 20, 30, 40],
-		[100, 200, 300, 400], [1000, 2000, 3000, 400]), [4, 40, 400, 4000]);
-	test(largestOfFour([1, 2, 3, 4], [10, 20, 30, -40],
-		[100, -200, 300, -400], [1000, -2000, -3000, -400]), [4, 30, 300, 1000]);
-	test(largestOfFour([1, 2, 3, 4], [5, 20, 25, 75],
-		[30, -20, 33, 0], [10, 0, 0, 175]), [4, 75, 33, 175]);
-	test(largestOfFour([1, 2, 3, 0], [0, 20, 30, -40],
-		[10, -200, 3, -400], [100, -2000, 330, -400]), [3, 30, 10, 330]);
+	test(largestOfFour([[1, 2, 3, 4], [10, 20, 30, 40],
+		[100, 200, 300, 400], [1000, 2000, 3000, 400]]), [4, 40, 400, 3000]);
+	test(largestOfFour([[1, 2, 3, 4], [10, 20, 30, -40],
+		[100, -200, 300, -400], [1000, -2000, -3000, -400]]), [4, 30, 300, 1000]);
+	test(largestOfFour([[1, 2, 3, 4], [5, 20, 25, 75],
+		[30, -20, 33, 0], [10, 0, 0, 175]]), [4, 75, 33, 175]);
+	test(largestOfFour([[1, 2, 3, 0], [0, 20, 30, -40],
+		[10, -200, 3, -400], [100, -2000, 330, -400]]), [3, 30, 10, 330]);
 
 // Ex 6
 
@@ -319,18 +324,18 @@ print(separator);
 		var list= [] ;
 		var chunkArray= [] ;
 		for (var i = 0; i < arr.length; i++) {
-			 
-				list.push(arr[i]) ;
+
+			list.push(arr[i]) ;
 			if (list.length == size){
 				chunkArray.push(list) ;
 				list=[];
-				print(list) ;
-				}
-			 if (arr.length % size != 0 && i == arr.length-1) {
+				
+			}
+			if (arr.length % size != 0 && i == arr.length-1) {
 				chunkArray.push(arr[i]) ;
 			}
-			}
-         print(chunkArray) ;
+		}
+		
 		
 		return chunkArray ;
 	}
@@ -352,7 +357,7 @@ print(separator);
 	*/
 	function slasher(arr, howMany) {
 		var list=[] ;
-		for (var i = howMany-1; i >= 0 ; i++) {
+		for (var i = howMany ; i < arr.length ; i ++) {
 			list.push(arr[i]) ;
 		}
 		return list ;
@@ -378,12 +383,27 @@ print(separator);
 	are present in "Alien".
 	*/
 	function mutation(arr) {
-		return null;
+		var list1 = arr[0].toLowerCase();
+		var list2 = arr[1].split('');
+		
+		var i = 0 ;
+		while (i < list2.length) {
+		 	
+		 
+              
+			if (list1.includes(list2[i].toLowerCase())) {
+				 i++ ;
+				
+
+			} else return false ;
+		}
+		
+return true ;
 	}
 
 
-	print("slasher");
-	test(mutation(["hello", "hey"]), true);
+	print("mutation");
+	test(mutation(["hello", "hey"]), false);
 	test(mutation(["hello", "Hello"]), true);
 	test(mutation(["zyxwvutsrqponmlkjihgfedcba", "qrstu"]), true);
 	test(mutation(["Mary", "Army"]), true);
